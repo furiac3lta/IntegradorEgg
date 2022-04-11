@@ -4,7 +4,7 @@ import modelo.Persona;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -105,7 +105,7 @@ public class PersonaServices {
         System.out.println("Cantidad de ciudades: " + listaCiudades.size());
         System.out.println("");
 
-        File salida = new File("/home/marce/Escritorio/listaCiudades.txt");
+        File salida = new File("/home/marce/Escritorio/listaCiudades.csv");
         try (FileOutputStream salidaStream = new FileOutputStream(salida);
              BufferedWriter bufer = new BufferedWriter(new OutputStreamWriter(salidaStream));) {
             for (String s : listaCiudades) {
