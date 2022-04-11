@@ -6,9 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Programa {
-    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException{
+    public static void main(String[] args) {
         PersonaServices personaServices = new PersonaServices();
-        personaServices.leer();
+        //personaServices.leer();
+        personaServices.leerArchivo();
         personaServices.encontrarEmpleadoPorNombre();
         personaServices.encontrarEmpleadoPorCorreo();
         personaServices.imprimirCiudades();

@@ -3,15 +3,23 @@ package services;
 import modelo.Persona;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PersonaServices {
     public PersonaServices() {
     }
+    List<Persona> listaPersonas = new ArrayList<Persona>();
+    /* PRIMER INTENTO SIN USAR STREAM
     ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
     public void leer(){
         System.out.println("Ejercicio 01-02");
@@ -37,6 +45,21 @@ public class PersonaServices {
             entrada.close();
         } catch (IOException e){
             System.out.println("No se ha encontrado el archivo");
+        }
+        System.out.println("");
+    }*/
+    public void leerArchivo() {
+        System.out.println("Ejercicio 01-02");
+        String ruta = "/home/marce/Escritorio/datos.csv";
+        try (Stream<String> streamF = Files.lines(Paths.get(ruta))) {
+            listaPersonas = streamF.map(linea -> linea.split(",")).map(arreglo -> {
+                Persona persona = new Persona(arreglo[0], arreglo[1], arreglo[2], Double.parseDouble(arreglo[3]));
+                return persona;
+            }).collect(Collectors.toList());
+            listaPersonas.forEach(System.out::println);
+
+        }catch (IOException e){
+            System.out.println("Error de lectura");
         }
         System.out.println("");
     }
